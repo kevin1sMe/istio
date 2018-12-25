@@ -32,8 +32,8 @@ spec:
 {{- end }}
 {{- end }}
       containers:
-        - name: zipkin
-          image: "{{ .Values.zipkin.hub }}/zipkin:{{ .Values.zipkin.tag }}"
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.global.tracer.hub }}/openzipkin/zipkin:{{ .Values.zipkin.tag }}"
           ports:
             - containerPort: {{ .Values.zipkin.queryPort }}
           livenessProbe:
