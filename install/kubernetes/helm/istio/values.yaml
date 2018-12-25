@@ -5,6 +5,7 @@
 gateways:
   enabled: true
 
+
 #
 # sidecar-injector webhook configuration, refer to the
 # charts/sidecarInjectorWebhook/values.yaml for detailed configuration
@@ -57,7 +58,7 @@ ingress:
 # addon grafana configuration
 #
 grafana:
-  enabled: false
+  enabled: true
 
 #
 # addon prometheus configuration
@@ -69,19 +70,19 @@ prometheus:
 # addon servicegraph configuration
 #
 servicegraph:
-  enabled: false
+  enabled: true
 
 #
 # addon jaeger tracing configuration
 #
 tracing:
-  enabled: false
+  enabled: true
 
 #
 # addon kiali tracing configuration
 #
 kiali:
-  enabled: false
+  enabled: true
 
 #
 # Istio CNI plugin enabled
@@ -108,6 +109,12 @@ global:
 
   # monitoring port used by mixer, pilot, galley
   monitoringPort: 9093
+
+  prometheus:
+    hub: prom
+
+  kiali:
+    hub: docker.io/kiali
 
   k8sIngress:
     enabled: false
@@ -237,6 +244,7 @@ global:
     #   required. If a value is specified then a secret called "lightstep.cacert" must be created in the destination
     #   namespace with the key matching the base of the provided cacertPath and the value being the cacert itself.
     #
+    hub: docker.io
     lightstep:
       address: ""                # example: lightstep-satellite:443
       accessToken: ""            # example: abcdefg1234567
