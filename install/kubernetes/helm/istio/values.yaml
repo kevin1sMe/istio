@@ -33,6 +33,7 @@ galley:
 #
 # @see charts/mixer/values.yaml, it takes precedence
 mixer:
+  enabled: true
   policy:
     # if policy is enabled the global.disablePolicyChecks has affect.
     enabled: true
@@ -87,7 +88,7 @@ kiali:
 #
 certmanager:
   enabled: false
-  
+
 #
 # Istio CNI plugin enabled
 #   This must be enabled to use the CNI plugin in Istio.  The CNI plugin is installed separately.
@@ -120,6 +121,12 @@ global:
 
   # monitoring port used by mixer, pilot, galley
   monitoringPort: 15014
+
+  prometheus:
+    hub: prom
+
+  kiali:
+    hub: docker.io/kiali
 
   k8sIngress:
     enabled: false
@@ -282,6 +289,7 @@ global:
     #   required. If a value is specified then a secret called "lightstep.cacert" must be created in the destination
     #   namespace with the key matching the base of the provided cacertPath and the value being the cacert itself.
     #
+    hub: docker.io
     lightstep:
       address: ""                # example: lightstep-satellite:443
       accessToken: ""            # example: abcdefg1234567

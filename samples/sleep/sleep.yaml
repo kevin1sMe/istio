@@ -43,6 +43,8 @@ spec:
     metadata:
       labels:
         app: sleep
+      annotations:
+        sidecar.istio.io/inject: "false"
     spec:
       serviceAccountName: sleep
       containers:

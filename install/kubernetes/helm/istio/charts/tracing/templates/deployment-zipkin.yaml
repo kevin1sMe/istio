@@ -38,6 +38,8 @@ spec:
         - name: zipkin
           image: "{{ .Values.zipkin.hub }}/zipkin:{{ .Values.zipkin.tag }}"
           imagePullPolicy: {{ .Values.global.imagePullPolicy }}
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.global.tracer.hub }}/openzipkin/zipkin:{{ .Values.zipkin.tag }}"
           ports:
             - containerPort: {{ .Values.zipkin.queryPort }}
           livenessProbe:
