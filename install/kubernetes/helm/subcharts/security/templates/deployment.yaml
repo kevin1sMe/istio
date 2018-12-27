@@ -35,7 +35,11 @@ spec:
 {{- end }}
       containers:
         - name: citadel
+{{- if .Values.global.bcsKihank8sHub }}
+          image: "{{ .Values.global.bcsKihank8sHub }}/{{ .Values.global.hub }}/{{ .Values.image }}:{{ .Values.global.tag }}"
+{{- else }}
           image: "{{ .Values.global.hub }}/{{ .Values.image }}:{{ .Values.global.tag }}"
+{{- end }}
           imagePullPolicy: {{ .Values.global.imagePullPolicy }}
           args:
             - --append-dns-names=true

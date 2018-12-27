@@ -39,8 +39,8 @@ spec:
 {{- if $.Values.global.proxy.enableCoreDump }}
       initContainers:
         - name: enable-core-dump
-{{- if contains "/" $.Values.global.proxy_init.image }}
-          image: "{{ $.Values.global.proxy_init.image }}"
+{{- if $.Values.global.bcsKihank8sHub }}
+          image: "{{ $.Values.global.bcsKihank8sHub }}/{{ $.Values.global.hub }}/{{ $.Values.global.proxy_init.image }}:{{ $.Values.global.tag }}"
 {{- else }}
           image: "{{ $.Values.global.hub }}/{{ $.Values.global.proxy_init.image }}:{{ $.Values.global.tag }}"
 {{- end }}
@@ -55,8 +55,8 @@ spec:
 {{- end }}
       containers:
         - name: istio-proxy
-{{- if contains "/" $.Values.global.proxy.image }}
-          image: "{{ $.Values.global.proxy.image }}"
+{{- if $.Values.global.bcsKihank8sHub }}
+          image: "{{ $.Values.global.bcsKihank8sHub }}/{{ $.Values.global.hub }}/{{ $.Values.global.proxy.image }}:{{ $.Values.global.tag }}"
 {{- else }}
           image: "{{ $.Values.global.hub }}/{{ $.Values.global.proxy.image }}:{{ $.Values.global.tag }}"
 {{- end }}
