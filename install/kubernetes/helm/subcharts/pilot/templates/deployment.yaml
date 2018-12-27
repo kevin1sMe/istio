@@ -143,6 +143,8 @@ spec:
         {{- else }}
           - --controlPlaneAuthPolicy
           - NONE
+          - --proxyLogLevel
+          - debug
         {{- end }}
           env:
           - name: POD_NAME

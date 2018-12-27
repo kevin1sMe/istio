@@ -4,7 +4,7 @@
 enabled: false
 replicaCount: 1
 image:
-  repository: grafana/grafana
+  img: grafana/grafana
   tag: 5.2.3
 persist: false
 storageClassName: ""
