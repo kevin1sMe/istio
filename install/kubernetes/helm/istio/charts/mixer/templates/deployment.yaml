@@ -20,8 +20,8 @@
       {{- include "podAntiAffinity" . | indent 6 }}
       containers:
       - name: mixer
-{{- if contains "/" .Values.image }}
-        image: "{{ .Values.image }}"
+{{- if .Values.global.bcsKihank8sHub }}
+        image: "{{ .Values.global.bcsKihank8sHub }}/{{ $.Values.global.hub }}/{{ $.Values.image }}:{{ $.Values.global.tag }}"
 {{- else }}
         image: "{{ $.Values.global.hub }}/{{ $.Values.image }}:{{ $.Values.global.tag }}"
 {{- end }}
@@ -86,11 +86,12 @@
           initialDelaySeconds: 5
           periodSeconds: 5
       - name: istio-proxy
-{{- if contains "/" $.Values.global.proxy.image }}
-        image: "{{ $.Values.global.proxy.image }}"
+{{- if .Values.global.bcsKihank8sHub }}
+        image: "{{ .Values.global.bcsKihank8sHub }}/{{ $.Values.global.hub }}/{{ $.Values.global.proxy.image }}:{{ $.Values.global.tag }}"
 {{- else }}
         image: "{{ $.Values.global.hub }}/{{ $.Values.global.proxy.image }}:{{ $.Values.global.tag }}"
 {{- end }}
+
         imagePullPolicy: {{ $.Values.global.imagePullPolicy }}
         ports:
         - containerPort: 9091
@@ -168,8 +169,8 @@
       {{- include "podAntiAffinity" . | indent 6 }}
       containers:
       - name: mixer
-{{- if contains "/" .Values.image }}
-        image: "{{ .Values.image }}"
+{{- if .Values.global.bcsKihank8sHub }}
+        image: "{{ .Values.global.bcsKihank8sHub }}/{{ $.Values.global.hub }}/{{ $.Values.image }}:{{ $.Values.global.tag }}"
 {{- else }}
         image: "{{ $.Values.global.hub }}/{{ $.Values.image }}:{{ $.Values.global.tag }}"
 {{- end }}
@@ -244,8 +245,8 @@
           initialDelaySeconds: 5
           periodSeconds: 5
       - name: istio-proxy
-{{- if contains "/" $.Values.global.proxy.image }}
-        image: "{{ $.Values.global.proxy.image }}"
+{{- if .Values.global.bcsKihank8sHub }}
+        image: "{{ .Values.global.bcsKihank8sHub }}/{{ $.Values.global.hub }}/{{ $.Values.global.proxy.image }}:{{ $.Values.global.tag }}"
 {{- else }}
         image: "{{ $.Values.global.hub }}/{{ $.Values.global.proxy.image }}:{{ $.Values.global.tag }}"
 {{- end }}

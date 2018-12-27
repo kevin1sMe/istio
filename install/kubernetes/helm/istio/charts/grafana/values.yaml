@@ -4,7 +4,7 @@
 enabled: false
 replicaCount: 1
 image:
-  repository: grafana/grafana
+  img: grafana/grafana
   tag: 6.0.2
 ingress:
   enabled: false

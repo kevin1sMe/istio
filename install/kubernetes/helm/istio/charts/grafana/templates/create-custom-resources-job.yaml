@@ -73,7 +73,12 @@ spec:
       serviceAccountName: istio-grafana-post-install-account
       containers:
         - name: kubectl
+{{- if $.Values.global.bcsKihank8sHub }}
+          image: "{{ $.Values.global.bcsKihank8sHub }}/{{ .Values.global.hub }}/kubectl:{{ .Values.global.tag }}"
+{{- else }}
           image: "{{ .Values.global.hub }}/kubectl:{{ .Values.global.tag }}"
+{{- end }}
+
           command: [ "/bin/bash", "/tmp/grafana/run.sh", "/tmp/grafana/custom-resources.yaml" ]
           volumeMounts:
             - mountPath: "/tmp/grafana"
