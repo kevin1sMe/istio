@@ -3,6 +3,9 @@
 #
 enabled: false
 
+__BCS__:
+    SYS_JFROG_DOMAIN: ""
+
 provider: jaeger
 nodeSelector: {}
 tolerations: []

@@ -46,6 +46,7 @@ mixer:
 # @see charts/pilot/values.yaml
 pilot:
   enabled: true
+  traceSampling: 100
 
 #
 # security configuration
@@ -105,6 +106,7 @@ istiocoredns:
 
 # Common settings used among istio subcharts.
 global:
+  bcsKihank8sHub: ""
   # Default hub for Istio images.
   # Releases are published to docker hub under 'istio' project.
   # Daily builds from prow are on gcr.io, and nightly builds from circle on docker.io/istionightly
@@ -127,6 +129,9 @@ global:
 
   kiali:
     hub: docker.io/kiali
+
+  grafana:
+    hub: 
 
   k8sIngress:
     enabled: false

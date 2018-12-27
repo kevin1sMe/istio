@@ -35,7 +35,11 @@ spec:
 {{- end }}
       containers:
       - name: certmanager
+{{- if $.Values.global.bcsKihank8sHub }}
+        image: "{{ $.Values.global.bcsKihank8sHub }}/{{ .Values.hub }}/cert-manager-controller:{{ .Values.tag }}"
+{{- else }}
         image: "{{ .Values.hub }}/cert-manager-controller:{{ .Values.tag }}"
+{{- end }}
         imagePullPolicy: {{ .Values.global.imagePullPolicy }}
         args:
         - --cluster-resource-namespace=$(POD_NAMESPACE)

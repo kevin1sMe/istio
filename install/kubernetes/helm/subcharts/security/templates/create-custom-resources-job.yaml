@@ -1,4 +1,4 @@
-{{- if .Values.createMeshPolicy }}
+{{- if not .Values.omitPostInstall }}
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -29,7 +29,7 @@ rules:
 - apiGroups: ["admissionregistration.k8s.io"]
   resources: ["validatingwebhookconfigurations"]
   verbs: ["get"]
-- apiGroups: ["extensions", "apps"]
+- apiGroups: ["extensions"]
   resources: ["deployments", "replicasets"]
   verbs: ["get", "list", "watch"]
 ---
@@ -51,6 +51,7 @@ subjects:
     name: istio-security-post-install-account
     namespace: {{ .Release.Namespace }}
 ---
+
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -73,6 +74,7 @@ spec:
         chart: {{ template "security.chart" . }}
         heritage: {{ .Release.Service }}
         release: {{ .Release.Name }}
+        version: {{ .Chart.Version }}
     spec:
       serviceAccountName: istio-security-post-install-account
       containers:
@@ -92,14 +94,4 @@ spec:
           configMap:
             name: istio-security-custom-resources
       restartPolicy: OnFailure
-      affinity:
-      {{- include "nodeaffinity" . | indent 6 }}
-      {{- include "podAntiAffinity" . | indent 6 }}
-      {{- if .Values.tolerations }}
-      tolerations:
-{{ toYaml .Values.tolerations | indent 6 }}
-      {{- else if .Values.global.defaultTolerations }}
-      tolerations:
-{{ toYaml .Values.global.defaultTolerations | indent 6 }}
-      {{- end }}
 {{- end }}

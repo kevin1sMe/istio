@@ -32,8 +32,12 @@ spec:
       priorityClassName: "{{ .Values.global.priorityClassName }}"
 {{- end }}
       containers:
-      - image: "{{ .Values.global.kiali.hub }}/kiali:{{ .Values.tag }}"
-        name: kiali
+      - name: kiali
+{{- if .Values.global.bcsKihank8sHub }}
+        image: "{{ .Values.global.bcsKihank8sHub }}/{{ .Values.global.kiali.hub }}/kiali:{{ .Values.tag }}"
+{{- else }}
+        image: "{{ .Values.global.kiali.hub }}/kiali:{{ .Values.tag }}"
+{{- end }}
         command:
         - "/opt/kiali/kiali"
         - "-config"
