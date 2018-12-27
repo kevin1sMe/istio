@@ -47,6 +47,7 @@ mixer:
 # @see charts/pilot/values.yaml
 pilot:
   enabled: true
+  traceSampling: 100
 
 #
 # security configuration
@@ -128,6 +129,9 @@ global:
 
   kiali:
     hub: docker.io/kiali
+
+  grafana:
+    hub: 
 
   k8sIngress:
     enabled: false
@@ -294,6 +298,7 @@ global:
     zipkin:
       # Host:Port for reporting trace data in zipkin format. If not specified, will default to
       # zipkin service (port 9411) in the same namespace as the other istio components.
+      #address: "zipkin.istio-system:9411"
       address: ""
     datadog:
       # Host:Port for submitting traces to the Datadog agent.

@@ -161,6 +161,8 @@ data:
       {{- if .Values.global.trustDomain }}
         - --trust-domain={{ .Values.global.trustDomain }}
       {{- end }}
+        - --proxyLogLevel
+        - debug
         env:
         - name: POD_NAME
           valueFrom:
