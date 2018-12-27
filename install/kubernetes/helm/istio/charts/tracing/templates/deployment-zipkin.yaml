@@ -33,7 +33,12 @@ spec:
 {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+{{- if .Values.global.bcsKihank8sHub }}
+          image: "{{ .Values.global.bcsKihank8sHub }}/{{ .Values.global.tracer.hub }}/openzipkin/zipkin:{{ .Values.zipkin.tag }}"
+{{- else }}
           image: "{{ .Values.global.tracer.hub }}/openzipkin/zipkin:{{ .Values.zipkin.tag }}"
+{{- end }}
+
           ports:
             - containerPort: {{ .Values.zipkin.queryPort }}
           livenessProbe:

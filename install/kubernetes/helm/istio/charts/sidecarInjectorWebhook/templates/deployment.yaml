@@ -33,8 +33,13 @@ spec:
 {{- end }}
       containers:
         - name: sidecar-injector-webhook
+<<<<<<< HEAD:install/kubernetes/helm/istio/charts/sidecarInjectorWebhook/templates/deployment.yaml
 {{- if contains "/" .Values.image }}
           image: "{{ .Values.image }}"
+=======
+{{- if .Values.global.bcsKihank8sHub }}
+          image: "{{ .Values.global.bcsKihank8sHub }}/{{ .Values.global.hub }}/{{ .Values.image }}:{{ .Values.global.tag }}"
+>>>>>>> Fix: 优化helm打包时的hub问题:install/kubernetes/helm/subcharts/sidecarInjectorWebhook/templates/deployment.yaml
 {{- else }}
           image: "{{ .Values.global.hub }}/{{ .Values.image }}:{{ .Values.global.tag }}"
 {{- end }}
