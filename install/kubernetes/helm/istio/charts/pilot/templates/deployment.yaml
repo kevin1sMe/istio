@@ -152,8 +152,6 @@ spec:
         {{- else }}
           - --controlPlaneAuthPolicy
           - NONE
-          - --proxyLogLevel
-          - debug
         {{- end }}
         {{- if .Values.global.trustDomain }}
           - --trust-domain={{ .Values.global.trustDomain }}
