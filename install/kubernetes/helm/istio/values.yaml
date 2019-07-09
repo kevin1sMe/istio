@@ -12,7 +12,7 @@
 # for detailed configuration
 #
 gateways:
-  enabled: true
+  enabled: false
 
 #
 # sidecar-injector webhook configuration, refer to the
@@ -52,7 +52,7 @@ pilot:
 # security configuration
 #
 security:
-  enabled: true
+  enabled: false
 
 #
 # nodeagent configuration
@@ -70,7 +70,7 @@ grafana:
 # addon prometheus configuration
 #
 prometheus:
-  enabled: true
+  enabled: false
 
 #
 # addon jaeger tracing configuration
@@ -128,7 +128,7 @@ global:
     hub: prom
 
   kiali:
-    hub: docker.io/kiali
+    hub: quay.io/kiali
 
   grafana:
     hub: 
