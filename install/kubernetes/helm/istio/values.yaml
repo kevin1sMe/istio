@@ -52,7 +52,7 @@ pilot:
 # security configuration
 #
 security:
-  enabled: false
+  enabled: true
 
 #
 # nodeagent configuration
@@ -149,6 +149,12 @@ global:
   proxy:
     image: proxyv2
 
+    io_tencent_bcs_namespace: default
+    io_tencent_bcs_cluster: BCS-K8S-40026
+    io_tencent_bcs_controller_type: Deployment
+    io_tencent_bkdata_baseall_dataid: 6566
+    io_tencent_bkdata_container_stdlog_dataid: 12141
+    io_tencent_bcs_app_appid: 555
     # cluster domain. Default value is "cluster.local".
     clusterDomain: "cluster.local"
 
